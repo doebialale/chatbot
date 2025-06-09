@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css">
+    <style>
+        body {
+            font-family: 'FiraCode Nerd Font', monospace; /* Use Nerd Font */
+            margin: 0;
+            padding: 10px; /* Adjusted padding to decrease spacing */
+            background-color: #282a36;
+            color: #f8f8f2;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #bd93f9;
+            font-size: 82px;
+            margin-bottom: 10px;
+            font-family: 'Nexa', sans-serif;
+        }
+
+        #chat-container {
+            border: 1px solid #44475a;
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #44475a;
+            width: 70%;
+        }
+
+        #user-input {
+            margin: 20px;
+            text-align: center;
+            width: 70%;
+            display: flex;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #6272a4;
+            color: #f8f8f2;
+            margin-right: 10px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #f8f8f2; /* Make placeholder text white */
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #bd93f9;
+            color: #282a36;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Chatbot App v0.1</h1>
+
+        <div id="chat-container">
+            {% for message in chat_history %}
+                <p>{{ message['sender'] }}: {{ message['message'] }}</p>
+            {% endfor %}
+        </div>
+
+        <form id="user-input" action="/submit" method="post">
+            <input type="text" name="user_message" id="user_message" placeholder="Type your message...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
